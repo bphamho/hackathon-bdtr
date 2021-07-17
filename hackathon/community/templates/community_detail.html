@@ -9,8 +9,16 @@
       <h1 class="jumbotron-heading">{{com.name}}</h1>
       <p class="lead text-muted">Want more help? </p>
       <p>
-        <a href="#" class="btn btn-primary my-2">Follow Community</a>
-        <a href="#" class="btn btn-secondary my-2">Go back</a>
+      {% if user in com.members.all %}
+      <form action="{% url 'community-detail' com.pk %}" method="GET">
+        {% csrf_token %}
+        <button class="btn btn-danger my-2" id="leave" name="leave">Leave Community</button>
+      {% else %}
+          {% csrf_token %}
+          <button class="btn btn-primary my-2" id="follow">Follow Community</button>
+        </form>
+      {% endif %}
+        <a href="{% url 'community' %}" class="btn btn-secondary my-2">Go back</a>
       </p>
     </div>
   </section>
