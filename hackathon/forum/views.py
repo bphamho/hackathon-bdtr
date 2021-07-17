@@ -48,7 +48,6 @@ def create_post(request):
 def create_comment(request):
     user = request.POST['username']
     comment = request.POST['comment']
-    pid = request.POST['id']
     if (len(comment) == 0):
         post = get_object_or_404(Post, pk=pid)
         comments = Comment.objects.filter(post_id=pid)
