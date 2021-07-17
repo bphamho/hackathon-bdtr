@@ -41,8 +41,6 @@ def create_post(request):
 def comment_page(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     return render(request, 'forum/comment_box.html', {'post': post})
-
-    return render(request, 'forum/post_detail.html', {'post': post})
     
     #render videos
 
