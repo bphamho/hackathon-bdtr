@@ -31,18 +31,20 @@ def create_new_post_page(request):
 def create_post(request):
     title = request.POST['title']
     content = request.POST['content']
-    print(request.POST)
     user = request.POST['username']
     new_post = Post(author=user, write_date=datetime.now(), title=title, content=content)
     new_post.save()
     comments = Comment.objects.filter(post_id=new_post.id)
     return render(request, 'forum/post_detail.html', {'post': new_post, 'comments': comments})
 
-def comment_page(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
-    return render(request, 'forum/comment_box.html', {'post': post})
-
-    return render(request, 'forum/post_detail.html', {'post': post})
+def create_comment(request):
+   # post = get_object_or_404(Post, pk=post_id)
+    user = request.POST['username']
+    comment = request.POST['comment']
+   # new_comment = 
+   # return render(request, 'forum/comment_box.html', {'post': post})
+#
+   #return render(request, 'forum/post_detail.html', {'post': post})
     
     #render videos
 
