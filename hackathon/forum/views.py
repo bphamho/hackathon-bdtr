@@ -30,15 +30,10 @@ def create_new_post_page(request):
 
 @login_required
 def create_post(request):
-  #  if (request.method == 'POST'):
-    #    post_form = PostForm(request.POST)
-     #   if (post_form.is_valid()):
-        #    q = post_form.save()
-        #    new_post = Post.objects.filter(id = q.id)
-         #   return render(request, 'forum/post_detail.html', {'post': new_post, 'comments': comments})
     title = request.POST['title']
     content = request.POST['content']
     user = request.POST['username']
+    #if (len(content) == 0 or len(title) == 0):
     new_post = Post(author=user, write_date=datetime.now(), title=title, content=content)
     new_post.save()
     comments = Comment.objects.filter(post_id=new_post)
