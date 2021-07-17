@@ -35,12 +35,11 @@
       </form>
       <ul class="navbar-nav ml-auto">
       {% if user.is_authenticated %}
-          <li><a type="button" class="btn btn-outline-light me-2" href="">Logout</a></li>
-          <li><a type="button" class="btn btn-outline-info me-2" href="">Create Post</a></li>
-
+          <li><a type="button" class="btn btn-outline-light me-2" href="{% url 'user-logout'%}">Logout</a></li>
+          <li><a type="button" class="btn btn-outline-info me-2" href="#">Create Post</a></li>
       {% else %}
-          <li><a type="button" class="btn btn-outline-light me-2" href="">Login</a></li>
-          <li><a type="button" class="btn btn-warning" href="">Sign-up</a></li>
+          <li><a type="button" class="btn btn-outline-light me-2" href="{% url 'user-login'%}">Login</a></li>
+          <li><a type="button" class="btn btn-warning" href="{% url 'user-register'%}">Register</a></li>
       {% endif %}
       </ul>
   </nav>
