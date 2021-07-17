@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
 {% if post_list %}
     <ul>
     {% for post in post_list %}
@@ -7,3 +11,5 @@
 {% else %}
     <p>No posts found</p>
 {% endif %}
+
+{% endblock content %}

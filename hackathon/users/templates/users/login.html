@@ -1,5 +1,13 @@
-<form method="POST">
-    {% csrf_token %}
-    <fieldset>{{ form }}</fieldset>
-    <button type="submit">Log In</button>
-</form>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>{{ form }}</fieldset>
+        <button type="submit">Log In</button>
+    </form>
+</div>
+
+{% endblock content %}
