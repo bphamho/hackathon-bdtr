@@ -15,8 +15,15 @@
     {% endfor %}
 </u2>
 
-<form action="{% url 'forum:comment_page' post.id %}">
-    <button>Add Comment!</button>
+<form action="{% url 'forum:create_comment' %}" method='post'>
+    {% csrf_token %}
+    <input type="hidden" id="username" name="username" value={{user.username}}></input>
+    <input type="hidden" id="id" name="id" value={{post.id}}></input>
+    <div>
+        <label for="comment">New comment:</label><br>
+    </div>
+    <input type="text" id="comment" name="comment"><br>
+    <input type="submit" value="Add comment">
 </form>
 
 {% endblock content %}
