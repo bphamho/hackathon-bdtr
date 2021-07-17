@@ -15,15 +15,14 @@ class UserProfile(models.Model):
     def __str__(self):
         return f'{self.user.username}\'s Profile'
 
-    def save(self, **kwargs):
-        super().save()
-        profile_picture = Image.open(self.image.path)
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
+    #     profile_picture = Image.open(self.image.path)
         
-        max_height = 400
-        max_width = 200
-        max_size = (max_height, max_width)
+    #     max_height = 400
+    #     max_width = 200
+    #     max_size = (max_height, max_width)
         
-        if profile_picture.height > max_height or profile_picture.width > max_width:
-            profile_picture.thumbnail(max_size)
-            profile_picture.save(self.image.path)
-
+    #     if profile_picture.height > max_height or profile_picture.width > max_width:
+    #         profile_picture.thumbnail(max_size)
+    #         profile_picture.save(self.image.path)
