@@ -2,10 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .forms import RegistrationForm
 
-
-
 # Create your views here.
-def register_user(request):
+def user_register(request):
     if request.method == 'POST':
         registration_form = RegistrationForm(request.POST)
         if registration_form.is_valid():
@@ -17,6 +15,3 @@ def register_user(request):
 @login_required
 def user_profile(request):
     return render(request, 'users/user_profile.html')
-
-def home(request):
-    return render(request, 'users/home.html')
