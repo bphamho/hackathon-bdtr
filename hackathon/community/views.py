@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.generic import ListView, DetailView, FormView
 from .models import CommunityDetail
@@ -19,12 +19,19 @@ class CommunityViewAdv(DetailView):
     #template_name = 'make_community.html'
     
 @login_required
-def create_community(self):
-    if self.method == 'POST':
-        community_form = CreateCommunityForm(self.POST)
+def create_community(request):
+    if request.method == 'POST':
+        community_form = CreateCommunityForm(request.POST)
         if community_form.is_valid():
             new_community = community_form.save(commit=False)
-            new_community.founder = self.user
-            new_community.members.add(self.user)
+            new_community.founder = request.user
+            new_community.save()
+            new_community.members.add(request.user)
+            return redirect('community')
+    else:
+        community_form = CreateCommunityForm()
+    return render(request, 'community_make.html', {'community_form': community_form})
     
-    return HttpResponseRedirect(self.path_info)
+def community_detail(request, pk):
+    community = get_object_or_404(CommunityDetail, pk=pk)
+    return render(request, 'community_detail.html', {'com': community})
