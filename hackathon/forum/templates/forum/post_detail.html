@@ -8,5 +8,15 @@
     <li>{{ post.write_date }}</li>
     <li>{{ post.content }}</li>
 </u1>
+<a>Comments</a>
+<u2>
+    {% for comment in comments %}
+        <li>{{ comment.comment }} (posted at {{comment.write_date}} by {{comment.commentor}})</li>
+    {% endfor %}
+</u2>
+
+<form action="{% url 'forum:comment_page' post.id %}">
+    <button>Add Comment!</button>
+</form>
 
 {% endblock content %}
