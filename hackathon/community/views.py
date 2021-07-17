@@ -35,7 +35,6 @@ def create_community(request):
 def community_detail(request, pk):
     community = get_object_or_404(CommunityDetail, pk=pk)
     user = request.user
-    
     follow = request.GET.get('follow')
     leave = request.GET.get('leave')
     
