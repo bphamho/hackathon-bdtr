@@ -15,10 +15,13 @@
     {% endfor %}
 </u2>
 
-<form action="{% url 'forum:create_post' %}" method='post'>
+<form action="{% url 'forum:create_comment' %}" method='post'>
     {% csrf_token %}
-    <input type="hidden" id="username" name="username" value={{user.username}}>
-    <label for="comment">Comment:</label><br>
+    <input type="hidden" id="username" name="username" value={{user.username}}></input>
+    <input type="hidden" id="id" name="id" value={{post.id}}></input>
+    <div>
+        <label for="comment">New comment:</label><br>
+    </div>
     <input type="text" id="comment" name="comment"><br>
     <input type="submit" value="Add comment">
 </form>
