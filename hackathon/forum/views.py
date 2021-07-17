@@ -3,8 +3,8 @@ from datetime import datetime
 from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
 
-from .models import Post, Comment
-
+from .models import Post, Comment, Video
+from django.db.models import Q
 from django.http import HttpResponse
 
 from django.contrib.auth.decorators import login_required
@@ -42,3 +42,19 @@ def comment_page(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     return render(request, 'forum/comment_box.html', {'post': post})
 
+    return render(request, 'forum/post_detail.html', {'post': post})
+    
+    #render videos
+
+def video_view(request):
+    videos = Video.objects.all()
+    return render(request, "forum/videos.html", {"videos": videos})
+
+def search(request):
+    
+    searched = request.POST.get('searched')
+    results = Post.objects.none()
+    if searched:
+        results = Post.objects.filter(Q(title__contains=searched) | Q(content__contains=searched) | Q(author__contains=searched))
+    
+    return render(request, "forum/search.html", {"results": results, "searched": searched})
