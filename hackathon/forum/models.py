@@ -13,14 +13,7 @@ class Comment(models.Model):
     commentor = models.CharField(max_length = 200)
     write_date = models.DateTimeField('date published')
     comment = models.CharField(max_length = 400)
-    post_id = models.ForeignKey(Post, on_delete=models.CASCADE)
-    
-class AddCommentButton(models.Model):
-    post_id = models.ForeignKey(Post, on_delete=models.CASCADE)
-    
-class CommentBox(models.Model):
-    post_id = models.ForeignKey(Post, on_delete=models.CASCADE)
-    comment = models.CharField(max_length = 400)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
 class Video(models.Model):
     title = models.CharField(max_length=200)
