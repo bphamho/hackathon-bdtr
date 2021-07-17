@@ -1,1 +1,1 @@
-web: gunicorn hackathon.hackathon.wsgi
+web: gunicorn hackathon.wsgi
