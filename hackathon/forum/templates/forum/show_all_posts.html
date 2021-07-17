@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+{% if post_list %}
+    <ul>
+    {% for post in post_list %}
+        <li><a href="{% url 'forum:post_detail' post.id %}">{{ post.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No posts found</p>
+{% endif %}
+
+{% endblock content %}

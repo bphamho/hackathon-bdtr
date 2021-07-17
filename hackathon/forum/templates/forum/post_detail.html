@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<h1>{{post.title}}</h1>
+<u1>
+    <li>{{ post.author }}</li>
+    <li>{{ post.write_date }}</li>
+    <li>{{ post.content }}</li>
+</u1>
+
+{% endblock content %}
