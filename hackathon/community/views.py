@@ -34,4 +34,13 @@ def create_community(request):
     
 def community_detail(request, pk):
     community = get_object_or_404(CommunityDetail, pk=pk)
-    return render(request, 'community_detail.html', {'com': community})
+    user = request.user
+    follow = request.GET.get('follow')
+    leave = request.GET.get('leave')
+    
+    if follow:
+        community.members.add(user)
+    if leave:
+        community.members.remove(user)
+    
+    return render(request, 'community_detail.html', {'com': community, 'user': user})
