@@ -2,16 +2,23 @@
 {% load static %}
 {% block content %}
 
-<h1>Create a new post!</h1>
 
-<form action="{% url 'forum:create_post' %}" method='post'>
-    {% csrf_token %}
-    <input type="hidden" id="username" name="username" value={{user.username}}>
-    <label for="title">Title:</label><br>
-    <input type="text" id="title" name="title"><br>
-    <textarea type="text" id="content" name="content"></textarea><br>
-    <input type="submit" value="Submit">
-</form>
+<section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Create a new post!</h1>
+    </div>
+</section>
+
+<center>
+    <form action="{% url 'forum:create_post' %}" method='post'>
+        {% csrf_token %}
+        <input type="hidden" id="username" name="username" value={{user.username}}>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" value={{title}}></input><br>
+        <textarea type="text" id="content" name="content" rows="10" cols="50">{{content}}</textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+</centre>
 
 
 {% endblock content %}
