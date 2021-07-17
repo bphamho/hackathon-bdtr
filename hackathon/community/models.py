@@ -6,6 +6,7 @@ class CommunityDetail(models.Model):
     description = models.CharField(max_length=300)
     founder = models.ForeignKey(User, on_delete=models.CASCADE, default = None)
     image = models.ImageField(upload_to = "images/")
+    members = models.ManyToManyField(User, related_name='group_members')
 
     def __str__(self):
         return str(self.name)

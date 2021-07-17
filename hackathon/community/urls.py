@@ -14,10 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import CommunityView, CommunityViewAdv, MakeCommunityView
+from .views import CommunityView, CommunityViewAdv, create_community
 
 urlpatterns = [
     path('', CommunityView.as_view(), name="community"),
     path('detail/<int:pk>', CommunityViewAdv.as_view(), name="community-detail"),
-    path('make_community/', MakeCommunityView.as_view(), name="make-community"),
+    path('make_community/', create_community, name="make-community"),
 ]
