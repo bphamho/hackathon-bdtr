@@ -15,6 +15,7 @@
     </div>
   </section>
   
+{% if post %}
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
@@ -37,18 +38,9 @@
       </div>
     </div>
   </div>
-  
-  {% for community in object_list %}
-  <section class="jumbotron text-center">
-    <div class = "container">
-      <p>
-        <a href="#" class="btn btn-primary my-2">{{community.name}}</a>
-      </br>
-        {{community.description}}
-      </p>
-    </div>
-  </section>
-  {% endfor %}
+
+{% else %}
+  <p>No communities have been made yet! Be the start of a new revolution!</p>
 
 </main>
 {% endblock content %}

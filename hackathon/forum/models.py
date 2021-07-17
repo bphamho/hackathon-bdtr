@@ -11,4 +11,13 @@ class Post(models.Model):
 class Comment(models.Model):
     commentor = models.CharField(max_length = 200)
     write_date = models.DateTimeField('date published')
-    
+
+class Video(models.Model):
+    title = models.CharField(max_length=200)
+    author = models.CharField(max_length = 200)
+    videofile= models.FileField(upload_to='videos//%y', null=True)
+    post_date = models.DateTimeField('date published')
+         
+    def __str__(self):
+        return self.title
+     

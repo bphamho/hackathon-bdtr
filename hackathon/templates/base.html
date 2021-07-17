@@ -23,9 +23,11 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-between">
       <a class="navbar-brand nav-link" href="/#" >Home</a>
       <ul class="navbar-nav mr-auto">
-          <li class="nav-item active"><a href="/community" class="nav-link px-2 text-white">Communities</a></li>
+          <li class="nav-item active"><a href="{% url 'community' %}" class="nav-link px-2 text-white">Communities</a></li>
+          <li class="nav-item active"><a href="{% url 'forum:all_posts' %} " class="nav-link px-2 text-white">Posts</a></li>
+          <li class="nav-item active"><a href="{% url 'forum:videos' %}" class="nav-link px-2 text-white">Videos</a></li>
       </ul>
-      <form class="form-inline mr-sm-2" method=POST action="">
+      <form class="form-inline mr-sm-2" method=POST action="{% url 'forum:search' %}">
           {% csrf_token %}
           <div class="row">
               <div class="col">

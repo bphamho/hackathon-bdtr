@@ -3,11 +3,33 @@
 {% block content %}
 
 {% if post_list %}
-    <ul>
-    {% for post in post_list %}
-        <li><a href="{% url 'forum:post_detail' post.id %}">{{ post.title }}</a></li>
-    {% endfor %}
-    </ul>
+
+<div class="album py-5">
+    <div class="container">
+      <div class="row">
+        {% for post in post_list %}
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <p class="card-text">{{ post.content }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a type="button" class="btn btn-sm btn btn-outline-secondary" href="{% url 'forum:post_detail' post.id %}">View</a>
+                  {% if user == post.author %} 
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  {% endif %}
+                </div>
+                <small class="text-muted">{{ post.write_date }}</small>
+                <small class="text-muted">{{ post.author }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 {% else %}
     <p>No posts found</p>
 {% endif %}
