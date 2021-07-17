@@ -30,25 +30,15 @@ def create_new_post_page(request):
 
 @login_required
 def create_post(request):
-  #  if (request.method == 'POST'):
-    #    post_form = PostForm(request.POST)
-     #   if (post_form.is_valid()):
-        #    q = post_form.save()
-        #    new_post = Post.objects.filter(id = q.id)
-         #   return render(request, 'forum/post_detail.html', {'post': new_post, 'comments': comments})
     title = request.POST['title']
     content = request.POST['content']
     user = request.POST['username']
+    #if (len(content) == 0 or len(title) == 0):
     new_post = Post(author=user, write_date=datetime.now(), title=title, content=content)
     new_post.save()
     comments = Comment.objects.filter(post_id=new_post)
     return render(request, 'forum/post_detail.html', {'post': new_post, 'comments': comments})
 
-<<<<<<< HEAD
-def comment_page(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
-    return render(request, 'forum/comment_box.html', {'post': post})
-=======
 @login_required
 def create_comment(request):
     user = request.POST['username']
@@ -63,7 +53,6 @@ def create_comment(request):
     new_comment.save()
     comments = Comment.objects.filter(post_id=pid)
     return render(request, 'forum/post_detail.html', {'post': post, 'comments': comments})
->>>>>>> tim
     
 #render videos
 @login_required
