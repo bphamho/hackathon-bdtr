@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
-
-<h1>{{ user.username }}</h1>
-
-{% endblock content %}
-=======
 <a href="{% url 'home' %}">Home</a>
 <h1>{{ user.username }}</h1>
 <img src='{{ user.userprofile.image.url }}'>
@@ -15,4 +6,3 @@
 <h3>About me</h3>
 <p>{{ user.userprofile.about_me }}</p>
 <a type="menu" href="{% url 'user-profile-edit' %}">Edit Profile</a>
->>>>>>> users
