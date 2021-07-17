@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 
 from .models import Post, Video
-
+from django.db.models import Q
 from django.http import HttpResponse
 # Create your views here.
 
@@ -21,3 +21,12 @@ def post_detail(request, post_id):
 def video_view(request):
     videos = Video.objects.all()
     return render(request, "forum/videos.html", {"videos": videos})
+
+def search(request):
+    
+    searched = request.POST.get('searched')
+    results = Post.objects.none()
+    if searched:
+        results = Post.objects.filter(Q(title__contains=searched) | Q(content__contains=searched) | Q(author__contains=searched))
+    
+    return render(request, "forum/search.html", {"results": results, "searched": searched})
