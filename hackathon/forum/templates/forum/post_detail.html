@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
 <h1>{{post.title}}</h1>
 <u1>
     <li>{{ post.author }}</li>
@@ -14,3 +18,5 @@
 <form action="{% url 'forum:comment_page' post.id %}">
     <button>Add Comment!</button>
 </form>
+
+{% endblock content %}
