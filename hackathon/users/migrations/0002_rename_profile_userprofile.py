@@ -10,10 +10,3 @@ class Migration(migrations.Migration):
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('users', '0001_initial'),
     ]
-
-    operations = [
-        migrations.RenameModel(
-            old_name='Profile',
-            new_name='UserProfile',
-        ),
-    ]
