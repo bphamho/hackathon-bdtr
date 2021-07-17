@@ -44,11 +44,6 @@ def create_post(request):
     comments = Comment.objects.filter(post_id=new_post)
     return render(request, 'forum/post_detail.html', {'post': new_post, 'comments': comments})
 
-<<<<<<< HEAD
-def comment_page(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
-    return render(request, 'forum/comment_box.html', {'post': post})
-=======
 @login_required
 def create_comment(request):
     user = request.POST['username']
@@ -63,7 +58,6 @@ def create_comment(request):
     new_comment.save()
     comments = Comment.objects.filter(post_id=pid)
     return render(request, 'forum/post_detail.html', {'post': post, 'comments': comments})
->>>>>>> tim
     
 #render videos
 @login_required
