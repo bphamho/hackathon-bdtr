@@ -17,6 +17,15 @@
         <input type="text" id="title" name="title" value={{title}}></input><br>
         <textarea type="text" id="content" name="content" rows="10" cols="50">{{content}}</textarea><br>
         <input type="submit" value="Submit">
+        <br>
+        Which Community?:
+        <select name="filter" class="btn btn-light dropdown-toggle">
+        {% for community in communities %}
+            {% if user in community.members.all %}
+            <option value="{{ community }}">{{ community }}</option>
+            {% endif %}
+        {% endfor %}
+        </select>
     </form>
 </centre>
 

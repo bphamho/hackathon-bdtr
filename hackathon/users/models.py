@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
+from community.models import CommunityDetail
 from PIL import Image
 
 # Create your models here.

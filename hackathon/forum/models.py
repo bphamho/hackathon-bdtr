@@ -7,8 +7,7 @@ class Post(models.Model):
     write_date = models.DateTimeField('date published')
     title = models.CharField(max_length = 200)
     content = models.CharField(max_length = 400)
-   # community = models.ForeignKey(Community)
-
+    
 class Comment(models.Model):
     commentor = models.CharField(max_length = 200)
     write_date = models.DateTimeField('date published')

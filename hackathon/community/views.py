@@ -20,6 +20,7 @@ class CommunityViewAdv(DetailView):
     
 @login_required
 def create_community(request):
+    user = request.user
     if request.method == 'POST':
         community_form = CreateCommunityForm(request.POST)
         if community_form.is_valid():
@@ -34,6 +35,7 @@ def create_community(request):
     
 def community_detail(request, pk):
     community = get_object_or_404(CommunityDetail, pk=pk)
+    posts = community.posts
     user = request.user
     follow = request.GET.get('follow')
     leave = request.GET.get('leave')
@@ -43,4 +45,4 @@ def community_detail(request, pk):
     if leave:
         community.members.remove(user)
     
-    return render(request, 'community_detail.html', {'com': community, 'user': user})
+    return render(request, 'community_detail.html', {'com': community, 'user': user, 'posts': posts})

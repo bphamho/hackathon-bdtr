@@ -6,6 +6,7 @@ from django.template import RequestContext
 from .models import Post, Comment, Video
 from django.db.models import Q
 from django.http import HttpResponse
+from community.models import CommunityDetail
 
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -26,10 +27,12 @@ def post_detail(request, post_id):
     
 @login_required
 def create_new_post_page(request):
-    return render(request, 'forum/create_new_post_page.html', {'title': "", 'content': ""})
+    communities = CommunityDetail.objects.all()
+    return render(request, 'forum/create_new_post_page.html', {'title': "", 'content': "", "communities": communities, "user": request.user})
 
 @login_required
 def create_post(request):
+    community_filter = request.POST['filter']
     title = request.POST['title']
     content = request.POST['content']
     user = request.POST['username']
@@ -42,6 +45,13 @@ def create_post(request):
     new_post = Post(author=user, write_date=datetime.now(), title=title, content=content)
     new_post.save()
     comments = Comment.objects.filter(post_id=new_post)
+    
+    communities = CommunityDetail.objects.all()
+    
+    for community in communities:
+        if community_filter == community.name:
+            community.posts.add(new_post)
+    
     return render(request, 'forum/post_detail.html', {'post': new_post, 'comments': comments})
 
 @login_required
