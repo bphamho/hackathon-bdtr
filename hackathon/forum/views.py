@@ -33,11 +33,9 @@ def create_post(request):
     title = request.POST['title']
     content = request.POST['content']
     user = request.POST['username']
-    old_content = ""
-    old_title = ""
     if (len(content) == 0 or len(title) == 0):
-        old_content = content
-        old_title = title
+        old_content = content if len(content) > 0 else ""
+        old_title = title if len(title) > 0 else ""
         return render(request, 'forum/create_new_post_page.html', {'title': old_title, 'content': old_content})
     new_post = Post(author=user, write_date=datetime.now(), title=title, content=content)
     new_post.save()
@@ -48,13 +46,11 @@ def create_post(request):
 def create_comment(request):
     user = request.POST['username']
     comment = request.POST['comment']
-    print(comment)
     pid = request.POST['id']
+    post = get_object_or_404(Post, pk=pid)
     if (len(comment) == 0):
-        post = get_object_or_404(Post, pk=pid)
         comments = Comment.objects.filter(post_id=pid)
         return render(request, 'forum/post_detail.html', {'post': post, 'comments': comments})
-    post = get_object_or_404(Post, pk=pid)
     new_comment = Comment(commentor=user, write_date=datetime.now(), comment=comment, post=post)
     new_comment.save()
     comments = Comment.objects.filter(post_id=pid)
