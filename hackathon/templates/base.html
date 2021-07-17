@@ -24,6 +24,7 @@
       <a class="navbar-brand nav-link" href="/#" >Home</a>
       <ul class="navbar-nav mr-auto">
           <li class="nav-item active"><a href="/#" class="nav-link px-2 text-white">Communities</a></li>
+          <li class="nav-item active"><a href="{% url 'forum:all_posts' %} " class="nav-link px-2 text-white">Posts</a></li>
       </ul>
       <form class="form-inline mr-sm-2" method=POST action="">
           {% csrf_token %}

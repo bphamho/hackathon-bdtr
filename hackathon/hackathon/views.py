@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from forum.models import Post
 
 def index(request):
-    return render(request, 'index.html')
+    # Get all posts
+    posts = Post.objects.all()
+    
+    return render(request, 'index.html', {'posts': posts})
