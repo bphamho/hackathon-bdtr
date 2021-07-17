@@ -37,6 +37,7 @@
       </form>
       <ul class="navbar-nav ml-auto">
       {% if user.is_authenticated %}
+          <li><a type="button" class="btn btn-outline-light me-2" href="{% url 'user-profile'%}">Profile</a></li>
           <li><a type="button" class="btn btn-outline-light me-2" href="{% url 'user-logout'%}">Logout</a></li>
           <li><a type="button" class="btn btn-outline-info me-2" href="{% url 'forum:create_new_post_page' %}">Create Post</a></li>
       {% else %}
