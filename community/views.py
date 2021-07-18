@@ -44,5 +44,5 @@ def community_detail(request, pk):
         community.members.add(user)
     if leave:
         community.members.remove(user)
-    
+    posts = posts.order_by('write_date')
     return render(request, 'community_detail.html', {'com': community, 'user': user, 'posts': posts})
