@@ -15,7 +15,7 @@
 </center>
 {% if comments %}
 <center>
-    <u2>
+    <u2 word-wrap=break-word>
         {% for comment in comments %}
             <li>{{ comment.comment }} (posted at {{comment.write_date}} by {{comment.commentor}})</li>
         {% endfor %}

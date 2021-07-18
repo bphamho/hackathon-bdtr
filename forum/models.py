@@ -15,6 +15,11 @@ class Comment(models.Model):
     comment = models.CharField(max_length = 400)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
+#class Article(models.Model):
+    #author = models.CharField(max_length = 200)
+    #write_date = models.DateTimeField('date published')
+    
+
 class Video(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length = 200)
