@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<main role="main">
+  
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">{{com.name}}</h1>
+      <p class="lead text-muted">Want more help? </p>
+      <p>
+      {% if user in com.members.all %}
+        {% csrf_token %}
+        <form href="{% url 'community-detail' com.pk %}" method="GET">
+          <input type="submit" id="leave" name="leave" value="Leave Community"></input>
+        </form>
+        <a href="{% url 'forum:create_new_post_page' %}" class="btn btn-secondary my-2">Create Post</a>
+      {% else %}
+        {% csrf_token %}
+        <form href="{% url 'community-detail' com.pk %}" method="GET">
+          <input type="submit" id="follow" name="follow" value="Follow Community"></button>
+        </form>
+      {% endif %}
+        <a href="{% url 'community' %}" class="btn btn-secondary my-2">Go back</a>
+      </p>
+    </div>
+  </section>
+  
+  {% if posts %}
+
+<div class="album py-5">
+    <div class="container">
+      <div class="row">
+        {% for post in posts.all %}
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <p class="card-text">{{ post.content }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a type="button" class="btn btn-sm btn btn-outline-secondary" href="{% url 'forum:post_detail' post.id %}">View</a>
+                  {% if user == post.author %} 
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  {% endif %}
+                </div>
+                <small class="text-muted">{{ post.write_date }}</small>
+                <small class="text-muted">{{ post.author }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% else %}
+    <p>No posts found</p>
+{% endif %}
+  
+</main>
+{% endblock content %}

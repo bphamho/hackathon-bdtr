@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+<section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">{{post.title}}</h1>
+      <li>Posted by <i>{{ post.author }}</i> at {{ post.write_date }}</li>
+      <p class="lead text-muted">{{ post.content }}</p>
+    </div>
+</section>
+<center>
+    <div class="w3-container" style="color:black"><b>COMMENTS</b></a>
+</center>
+{% if comments %}
+<center>
+    <u2>
+        {% for comment in comments %}
+            <li>{{ comment.comment }} (posted at {{comment.write_date}} by {{comment.commentor}})</li>
+        {% endfor %}
+    </u2>
+</center>
+{% else %}
+<center>
+    <u2>
+        <div>No comments yet! Be the first one to help!</div>
+    </u2>
+</center>
+{% endif %}
+<center>
+    <form action="{% url 'forum:create_comment' %}" method='post'>
+        {% csrf_token %}
+        <input type="hidden" id="username" name="username" value={{user.username}}></input>
+        <input type="hidden" id="id" name="id" value={{post.id}}></input>
+        <div>
+            <label for="comment">New comment:</label><br>
+        </div>
+        <textarea type="text" id="comment" name="comment" rows="10" cols="50"></textarea><br>
+        <input type="submit" value="Add comment">
+    </form>
+</center>
+
+{% endblock content %}
