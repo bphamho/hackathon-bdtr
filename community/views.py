@@ -22,7 +22,7 @@ class CommunityViewAdv(DetailView):
 def create_community(request):
     user = request.user
     if request.method == 'POST':
-        community_form = CreateCommunityForm(request.POST)
+        community_form = CreateCommunityForm(request.POST, request.FILES)
         if community_form.is_valid():
             new_community = community_form.save(commit=False)
             new_community.founder = user

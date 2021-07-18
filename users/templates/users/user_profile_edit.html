@@ -3,11 +3,13 @@
 {% load static %}
 {% block content %}
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ update_user_form | crispy }}
-    {{ update_user_profile_form | crispy }}
-    <button type="submit">Save Changes</button>
-</form>
+<div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ update_user_form | crispy }}
+        {{ update_user_profile_form | crispy }}
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
 
 {% endblock content %}

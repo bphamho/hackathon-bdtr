@@ -6,8 +6,8 @@
 <p style="font-size:24px"><b>Username:</b></p>
 <p style="font-size:20px">{{ user.username }}</p>
 <p style="font-size:24px"><b>Profile Picture</b></p>
-<img src= 'https://hullandhull.com/wp-content/uploads/2020/06/smiley-10994882.jpg' width="250">
-<!-- original image source 'user.userprofile.image.url'-->
+<img src= '{{ user.userprofile.image.url }}' width="250">
+
 <p style="font-size:24px"><b>Email</b></p>
 <p>{{ user.email }}</p>
 <p>{{ user.userprofile.first_name }} {{ user.userprofile.last_name }}</p>
