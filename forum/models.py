@@ -7,12 +7,18 @@ class Post(models.Model):
     write_date = models.DateTimeField('date published')
     title = models.CharField(max_length = 200)
     content = models.CharField(max_length = 400)
-    
+   # community = models.ForeignKey(Community)
+
 class Comment(models.Model):
     commentor = models.CharField(max_length = 200)
     write_date = models.DateTimeField('date published')
     comment = models.CharField(max_length = 400)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+class Article(models.Model):
+    author = models.CharField(max_length = 200)
+    write_date = models.DateTimeField('date published')
+    
 
 class Video(models.Model):
     title = models.CharField(max_length=200)
