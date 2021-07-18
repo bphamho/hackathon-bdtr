@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.template import RequestContext
 
 from .models import Post, Comment, Video
@@ -40,7 +40,7 @@ def create_post(request):
     new_post = Post(author=user, write_date=datetime.now(), title=title, content=content)
     new_post.save()
     comments = Comment.objects.filter(post_id=new_post)
-    return render(request, 'forum/post_detail.html', {'post': new_post, 'comments': comments})
+    return redirect('/forum/' + str(new_post.id), post_detail(request, new_post.id))
 
 @login_required
 def create_comment(request):
@@ -54,8 +54,7 @@ def create_comment(request):
     new_comment = Comment(commentor=user, write_date=datetime.now(), comment=comment, post=post)
     new_comment.save()
     comments = Comment.objects.filter(post_id=pid)
-    print(comments)
-    return render(request, 'forum/post_detail.html', {'post': post, 'comments': comments})
+    return redirect('/forum/' + pid, post_detail(request, pid))
     
 #render videos
 @login_required
