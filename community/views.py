@@ -25,9 +25,9 @@ def create_community(request):
         community_form = CreateCommunityForm(request.POST)
         if community_form.is_valid():
             new_community = community_form.save(commit=False)
-            new_community.founder = request.user
+            new_community.founder = user
             new_community.save()
-            new_community.members.add(request.user)
+            new_community.members.add(user)
             return redirect('community')
     else:
         community_form = CreateCommunityForm()

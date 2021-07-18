@@ -25,6 +25,7 @@ urlpatterns = [
     path('', views.index, name="home"),
     path('community/', include('community.urls')),
     path('forum/', include('forum.urls')),
+    path('articles', include('articles.urls')),
     path('', include('users.urls'))
 ] 
 

@@ -7,7 +7,7 @@
   <section class="jumbotron text-center">
     <div class="container">
       <h1 class="jumbotron-heading">Communities</h1>
-      <p class="lead text-muted">Didn't find what you were searching below? Make a new community here!</p>
+      <p class="lead text-muted">Didn't find what you were searching for below? Make a new community here!</p>
       <p>
         {% if user.is_authenticated %}
         <a href="{% url 'make-community' %}" class="btn btn-primary my-2">Make Community</a>
@@ -23,7 +23,8 @@
         <div class="col-md-4">
           <div class="card mb-4 box-shadow">
             <div class="card-body">
-              <!-- <img class="card-img-top" src="{{ com.image.url }}" alt="Card image cap"> -->
+              <img class="card-img-top" src="https://hullandhull.com/wp-content/uploads/2020/06/smiley-10994882.jpg" alt="https://icon-library.com/images/small-icon-images/small-icon-images-4.jpg">
+              <!-- Image src originally is 'com.image.url'-->
               <h5 class="card-title">{{ com.name }}</h5>
               <p class="card-text">{{ com.description }}</p>
               <div class="d-flex justify-content-between align-items-center">

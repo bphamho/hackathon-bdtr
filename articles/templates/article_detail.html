@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<main role="main" class="container">
+    <h1 class="mt-5">{{ article.title }}</h1>
+    <p class="lead">{{ article.content }}</p>
+    <p>Written by: {{ article.author }} on {{ author.write_date}}</p>
+  </main>
+
+{% endblock content %}

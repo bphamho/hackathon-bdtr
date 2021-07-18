@@ -2,12 +2,18 @@
 {% load static %}
 {% block content %}
 
-<h1>{{ user.username }}</h1>
-<img src='{{ user.userprofile.image.url }}'>
+<center>
+<p style="font-size:24px"><b>Username:</b></p>
+<p style="font-size:20px">{{ user.username }}</p>
+<p style="font-size:24px"><b>Profile Picture</b></p>
+<img src= 'https://hullandhull.com/wp-content/uploads/2020/06/smiley-10994882.jpg' width="250">
+<!-- original image source 'user.userprofile.image.url'-->
+<p style="font-size:24px"><b>Email</b></p>
 <p>{{ user.email }}</p>
 <p>{{ user.userprofile.first_name }} {{ user.userprofile.last_name }}</p>
-<h3>About me</h3>
+<p style="font-size:24px"><b>About Me</b></p>
 <p>{{ user.userprofile.about_me }}</p>
 <a type="menu" href="{% url 'user-profile-edit' %}">Edit Profile</a>
+</center>
 
 {% endblock content %}

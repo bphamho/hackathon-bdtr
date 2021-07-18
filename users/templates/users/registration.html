@@ -2,11 +2,30 @@
 {% load static %}
 {% block content %}
 
+<center>
+</br>
 <h1>Register</h1>
 <form method="POST">
     {% csrf_token %}
-    <fieldset>{{ registration_form }}</fieldset>
-    <button type="submit">Submit</button>
+    <p class="lead text-muted">Become part of the community!</p>
+    <p style="font-size:20px"><u>Username</u></p>
+    <fieldset>{{ registration_form.username }}</fieldset>
+    <p>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+    <p style="font-size:20px"><u>Email</u></p>
+    <fieldset>{{ registration_form.email }}</fieldset>
+    </br>
+    <p style="font-size:20px"><u>Password</u></p>
+    <fieldset>{{ registration_form.password1 }}</fieldset>
+    <p>Your password can’t be too similar to your other personal information.</p>
+    <p>Your password must contain at least 8 characters.</p>
+    <p>Your password can’t be a commonly used password.</p>
+    <p>Your password can’t be entirely numeric.</p>
+    <p style="font-size:20px"><u>Confirm Password</u></p>
+    <fieldset>{{ registration_form.password2 }}</fieldset>
+    <p>Enter the same password as before, for verification.</p>
+    </br>
+<!-- Fieldset <fieldset>{{ registration_form }}</fieldset>-->    
+<button type="submit">Submit</button>
 </form>
-
+</center>
 {% endblock content %}

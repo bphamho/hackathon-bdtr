@@ -15,11 +15,11 @@
 </center>
 {% if comments %}
 <center>
+    {% for comment in comments %}
     <u2 word-wrap=break-word>
-        {% for comment in comments %}
-            <li>{{ comment.comment }} (posted at {{comment.write_date}} by {{comment.commentor}})</li>
-        {% endfor %}
+        <li>{{ comment.comment }} (posted at {{comment.write_date}} by {{comment.commentor}})</li>
     </u2>
+    {% endfor %}
 </center>
 {% else %}
 <center>
@@ -29,11 +29,7 @@
 </center>
 {% endif %}
 <center>
-<<<<<<< HEAD
     <form action="{% url 'forum:create_comment' %}" method='post'>
-=======
-    <form action="{% url 'forum:create_comment' post.id %}" method='post'>
->>>>>>> bc10953529daa6c0aaaa15fba37e6c638405c81a
         {% csrf_token %}
         <input type="hidden" id="username" name="username" value={{user.username}}></input>
         <input type="hidden" id="id" name="id" value={{post.id}}></input>

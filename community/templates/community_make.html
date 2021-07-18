@@ -2,10 +2,31 @@
 {% load static %}
 {% block content %}
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <fieldset>{{ community_form }}</fieldset>
-    <button type="submit">Submit</button>
+    <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Create a Community</h1>
+          <p class="lead text-muted">Help people in ways you didn't know was possible!</p>
+          <p>
+            <p style="font-size:24px">Community Name</p>
+            <p class="lead text-muted"><small>Give your new creation a name!</small></p>
+            <fieldset>{{ community_form.name }}</fieldset>
+            </br> 
+            <p style="font-size:24px">Community Description</p>
+            <p class="lead text-muted"><small>What is this new community going to be about?</small></p>
+            <fieldset>{{ community_form.description }}</fieldset>
+            </br>
+            <p style="font-size:24px">Community Logo</p>
+            <p class="lead text-muted"><small>Make your community stand out!</small></p>
+            <fieldset>{{ community_form.image }}</fieldset>
+            </br>
+            <button type="submit">Submit</button> 
+            </br>
+            <a href="{% url 'community' %}" class="btn btn-secondary my-2">Go back</a>
+          </p>
+        </div>
+    </section>    
 </form>
 
 {% endblock content %}
