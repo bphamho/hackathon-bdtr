@@ -20,11 +20,12 @@ class CommunityViewAdv(DetailView):
     
 @login_required
 def create_community(request):
-    user = request.user
     if request.method == 'POST':
-        community_form = CreateCommunityForm(request.POST)
+        community_form = CreateCommunityForm(request.POST, request.FILES)
+        print(request.FILES['image'])
         if community_form.is_valid():
             new_community = community_form.save(commit=False)
+            print(new_community.image)
             new_community.founder = request.user
             new_community.save()
             new_community.members.add(request.user)
@@ -32,7 +33,7 @@ def create_community(request):
     else:
         community_form = CreateCommunityForm()
     return render(request, 'community_make.html', {'community_form': community_form})
-    
+    1
 def community_detail(request, pk):
     community = get_object_or_404(CommunityDetail, pk=pk)
     posts = community.posts

@@ -11,6 +11,3 @@ class UserProfile(models.Model):
     about_me = models.TextField(max_length=200, blank=True)
     date_joined = models.DateField(default=timezone.now)
     image = models.ImageField(default='default_profile.png', upload_to='profile_pictures')
-
-    def __str__(self):
-        return f'{self.user.username}\'s Profile'

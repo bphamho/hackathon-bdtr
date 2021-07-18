@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=127)),
                 ('description', models.CharField(max_length=300)),
-                ('image', models.ImageField(default='no_image.png', upload_to='images/community')),
+                ('image', models.ImageField(default='no_image.png', upload_to='community')),
                 ('founder', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
                 ('members', models.ManyToManyField(related_name='community_members', to=settings.AUTH_USER_MODEL)),
                 ('posts', models.ManyToManyField(related_name='community_posts', to='forum.Post')),
